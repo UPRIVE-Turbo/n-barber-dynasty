@@ -269,7 +269,7 @@ async function seed() {
   process.exit(0)
 }
 
-seed().catch((err) => {
+await seed().catch((err) => {
   console.error(err)
   process.exitCode = 1
   process.exit(1)
