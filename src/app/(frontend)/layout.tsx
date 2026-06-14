@@ -1,5 +1,7 @@
 import React from 'react'
 import { Oswald, Roboto } from 'next/font/google'
+import { getPayload } from 'payload'
+import config from '@/payload.config'
 import './styles.css'
 
 const oswald = Oswald({
@@ -16,17 +18,26 @@ const roboto = Roboto({
   display: 'swap',
 })
 
-export const metadata = {
-  title: 'N Barber Dynasty | Klasszikus Borbélyszalon Kaposváron',
-  description:
-    'Prémium férfi fodrászat, szakálligazítás és borotválás Kaposvár szívében. Foglalj időpontot Gáborhoz, Olivérhez vagy Andreihez.',
-  openGraph: {
-    title: 'N Barber Dynasty | Klasszikus Borbélyszalon Kaposváron',
-    description:
-      'Klasszikus borbélymunka, modern stílusban. Foglalj időpontot most Kaposváron, az Ady Endre utca 10. szám alatt.',
-    locale: 'hu_HU',
-    type: 'website',
-  },
+export async function generateMetadata() {
+  const payloadConfig = await config
+  const payload = await getPayload({ config: payloadConfig })
+  const settings = await payload.findGlobal({ slug: 'settings' })
+
+  const title = settings.seo?.metaTitle || 'N Barber Dynasty | Klasszikus Borbélyszalon Kaposváron'
+  const description =
+    settings.seo?.metaDescription ||
+    'Prémium férfi fodrászat, szakálligazítás és borotválás Kaposvár szívében.'
+
+  return {
+    title,
+    description,
+    openGraph: {
+      title,
+      description,
+      locale: 'hu_HU',
+      type: 'website',
+    },
+  }
 }
 
 export default async function RootLayout(props: { children: React.ReactNode }) {

@@ -3,6 +3,10 @@ import type { GlobalConfig } from 'payload'
 export const Settings: GlobalConfig = {
   slug: 'settings',
   label: 'Beállítások',
+  admin: {
+    group: 'Beállítások',
+    description: 'Cégadatok, elérhetőség, nyitvatartás és social linkek.',
+  },
   access: {
     read: () => true,
   },
@@ -76,6 +80,29 @@ export const Settings: GlobalConfig = {
       name: 'mapEmbedUrl',
       type: 'text',
       label: 'Google Maps embed URL',
+    },
+    {
+      name: 'seo',
+      type: 'group',
+      label: 'SEO beállítások',
+      admin: {
+        position: 'sidebar',
+      },
+      fields: [
+        {
+          name: 'metaTitle',
+          type: 'text',
+          label: 'Oldal címe (meta title)',
+          defaultValue: 'N Barber Dynasty | Klasszikus Borbélyszalon Kaposváron',
+        },
+        {
+          name: 'metaDescription',
+          type: 'textarea',
+          label: 'Oldal leírása (meta description)',
+          defaultValue:
+            'Prémium férfi fodrászat, szakálligazítás és borotválás Kaposvár szívében. Foglalj időpontot Gáborhoz, Olivérhez vagy Andreihez.',
+        },
+      ],
     },
   ],
 }

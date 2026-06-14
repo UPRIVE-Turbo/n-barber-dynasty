@@ -1,7 +1,19 @@
 import { Clock, MapPin, NavigationArrow, Phone } from '@phosphor-icons/react/dist/ssr'
 import type { Setting } from '@/payload-types'
+import { Reveal } from './Reveal'
 
-export function Contact({ settings }: { settings: Setting }) {
+type ContactContent = {
+  titleLine1: string
+  titleHighlight: string
+}
+
+export function Contact({
+  settings,
+  content,
+}: {
+  settings: Setting
+  content: ContactContent
+}) {
   const phones = settings.phones || []
   const hours = settings.openingHours || []
 
@@ -9,13 +21,13 @@ export function Contact({ settings }: { settings: Setting }) {
     <section id="contact" className="bg-anthracite text-white">
       <div className="grid min-h-[600px] grid-cols-1 lg:grid-cols-2">
         <div className="flex flex-col justify-center p-12 md:p-24">
-          <h2 className="mb-12 text-4xl uppercase md:text-5xl">
-            Itt Találsz
+          <Reveal as="h2" className="mb-12 text-4xl uppercase md:text-5xl">
+            {content.titleLine1}
             <br />
-            <span className="text-copper">Minket.</span>
-          </h2>
+            <span className="text-copper">{content.titleHighlight}</span>
+          </Reveal>
 
-          <div className="space-y-8">
+          <Reveal delay={150} className="space-y-8">
             <div className="flex items-start">
               <MapPin className="mr-6 mt-1 text-3xl text-copper" />
               <div>
@@ -63,10 +75,10 @@ export function Contact({ settings }: { settings: Setting }) {
                 </div>
               </div>
             )}
-          </div>
+          </Reveal>
         </div>
 
-        <div className="relative h-[400px] overflow-hidden bg-[#151D20] lg:h-auto">
+        <Reveal className="relative h-[400px] overflow-hidden bg-[#151D20] lg:h-auto">
           {settings.mapEmbedUrl ? (
             <iframe
               src={settings.mapEmbedUrl}
@@ -101,7 +113,7 @@ export function Contact({ settings }: { settings: Setting }) {
               </div>
             </>
           )}
-        </div>
+        </Reveal>
       </div>
     </section>
   )

@@ -4,26 +4,36 @@ import { useActionState } from 'react'
 import { CaretDown, Scissors } from '@phosphor-icons/react/dist/ssr'
 import { submitBooking, type BookingFormState } from '../actions'
 import type { Service } from '@/payload-types'
+import { Reveal } from './Reveal'
 
 const initialState: BookingFormState = { status: 'idle' }
 
-export function BookingForm({ services }: { services: Service[] }) {
+type BookingContent = {
+  title: string
+  description: string
+  note: string
+}
+
+export function BookingForm({
+  services,
+  content,
+}: {
+  services: Service[]
+  content: BookingContent
+}) {
   const [state, formAction, pending] = useActionState(submitBooking, initialState)
 
   return (
     <section id="booking" className="relative bg-cream py-24 md:py-32">
       <div className="relative z-10 mx-auto max-w-5xl px-4 md:px-12">
-        <div className="relative border-t-4 border-copper bg-white p-8 shadow-[0_20px_50px_-15px_rgba(30,42,46,0.1)] md:p-16">
+        <Reveal className="relative border-t-4 border-copper bg-white p-8 shadow-[0_20px_50px_-15px_rgba(30,42,46,0.1)] md:p-16">
           <Scissors className="absolute right-8 top-8 text-6xl text-cream" weight="fill" />
 
           <div className="mb-12">
             <h2 className="mb-4 text-4xl uppercase text-anthracite md:text-6xl">
-              Foglalj Időpontot.
+              {content.title}
             </h2>
-            <p className="text-dark-gray/60">
-              Egységes foglalási rendszerünkön keresztül kiválaszthatod a borbélyodat és a kívánt
-              szolgáltatást. Mi visszaigazoljuk.
-            </p>
+            <p className="text-dark-gray/60">{content.description}</p>
           </div>
 
           <form action={formAction} className="space-y-8">
@@ -158,7 +168,7 @@ export function BookingForm({ services }: { services: Service[] }) {
             <button
               type="submit"
               disabled={pending}
-              className="mt-8 w-full bg-anthracite py-6 font-heading text-xl uppercase tracking-widest text-white shadow-lg transition-colors duration-300 hover:bg-copper disabled:opacity-60"
+              className="btn-shine mt-8 w-full bg-anthracite py-6 font-heading text-xl uppercase tracking-widest text-white shadow-lg transition-colors duration-300 hover:bg-copper disabled:opacity-60"
             >
               {pending ? 'Küldés...' : 'Foglalás Beküldése'}
             </button>
@@ -170,12 +180,9 @@ export function BookingForm({ services }: { services: Service[] }) {
               <p className="text-center font-medium text-red-600">{state.message}</p>
             )}
 
-            <p className="mt-4 text-center text-xs text-anthracite/40">
-              A foglalás véglegesítéséhez munkatársunk SMS-ben vagy telefonon megerősíti az
-              időpontot.
-            </p>
+            <p className="mt-4 text-center text-xs text-anthracite/40">{content.note}</p>
           </form>
-        </div>
+        </Reveal>
 
         <div className="pointer-events-none absolute inset-0 z-0 flex items-center justify-center overflow-hidden opacity-[0.03]">
           <span className="select-none whitespace-nowrap font-heading text-[20rem] font-bold text-dark-gray">

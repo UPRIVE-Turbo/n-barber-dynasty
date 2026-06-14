@@ -1,7 +1,17 @@
 import { FacebookLogo, InstagramLogo } from '@phosphor-icons/react/dist/ssr'
 import type { Setting } from '@/payload-types'
 
-export function Footer({ settings }: { settings: Setting }) {
+type FooterContent = {
+  copyrightText: string
+}
+
+export function Footer({
+  settings,
+  content,
+}: {
+  settings: Setting
+  content: FooterContent
+}) {
   return (
     <footer className="border-t border-white/5 bg-[#111A1C] py-12 text-white/50">
       <div className="mx-auto flex max-w-[1400px] flex-col items-center justify-between px-4 md:flex-row md:px-12">
@@ -13,7 +23,7 @@ export function Footer({ settings }: { settings: Setting }) {
             </span>
           </a>
           <p className="text-sm">
-            {settings.address} &middot; Minden jog fenntartva &copy; 2026.
+            {settings.address} &middot; {content.copyrightText}
           </p>
         </div>
 

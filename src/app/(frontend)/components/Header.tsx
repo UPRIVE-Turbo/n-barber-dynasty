@@ -27,7 +27,7 @@ export function Header() {
 
         <nav className="hidden items-center space-x-8 text-sm font-medium uppercase tracking-widest text-white/80 md:flex">
           {links.map((link) => (
-            <a key={link.href} href={link.href} className="hover:text-copper transition-colors">
+            <a key={link.href} href={link.href} className="nav-link hover:text-copper transition-colors">
               {link.label}
             </a>
           ))}
@@ -35,7 +35,7 @@ export function Header() {
 
         <a
           href="#booking"
-          className="hidden items-center justify-center border border-copper px-6 py-3 font-heading uppercase tracking-wide text-copper transition-all duration-300 hover:bg-copper hover:text-white active:scale-95 md:inline-flex"
+          className="btn-shine hidden items-center justify-center border border-copper px-6 py-3 font-heading uppercase tracking-wide text-copper transition-all duration-300 hover:bg-copper hover:text-white active:scale-95 md:inline-flex"
         >
           Időpontfoglalás
         </a>

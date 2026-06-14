@@ -2,10 +2,15 @@ import type { CollectionConfig } from 'payload'
 
 export const Submissions: CollectionConfig = {
   slug: 'submissions',
+  labels: {
+    singular: 'Megkeresés',
+    plural: 'Megkeresések',
+  },
   admin: {
+    group: 'Megkeresések',
     useAsTitle: 'name',
     defaultColumns: ['name', 'phone', 'barber', 'service', 'date', 'createdAt'],
-    description: 'Időpontfoglalási űrlap beküldések',
+    description: 'Időpontfoglalási űrlap beküldések.',
   },
   access: {
     read: () => true,
