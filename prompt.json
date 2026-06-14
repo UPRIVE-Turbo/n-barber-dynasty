@@ -1,0 +1,40 @@
+{
+  "project": {
+    "name": "N Barber Dynasty",
+    "slug": "n-barber-dynasty",
+    "language": "hu"
+  },
+  "business": {
+    "name": "N Barber Dynasty",
+    "industry": "Férfi fodrászat/Borbély",
+    "city": "Kaposvár",
+    "tier": "Tier 1",
+    "contact": {
+      "phone": "+36 30 246 5594",
+      "email": null,
+      "address": "Ady Endre utca 10, Kaposvár",
+      "facebook": "https://www.facebook.com/nbarberdynasty",
+      "instagram": null
+    }
+  },
+  "design": {
+    "colors": {
+      "primary": "#1E2A2E",
+      "background": "#EDE8E0"
+    },
+    "fonts": {
+      "heading": "Roboto",
+      "body": "Oswald"
+    }
+  },
+  "sections": [
+    "hero",
+    "services",
+    "about",
+    "gallery",
+    "booking-form",
+    "contact",
+    "footer"
+  ],
+  "full_prompt": "Készíts egy magyar nyelvű, egyoldalas landing page-et egy férfi fodrászatnak/borbélynak:\n\nAZ ÜZLET ADATAI:\n- Név: N Barber Dynasty\n- Cím: Ady Endre utca 10, Kaposvár\n- Telefonok: Gábor +36 30 246 5594, Olivér +36 20 410 9151, Andrei +36 30 823 6167\n- Facebook: facebook.com/nbarberdynasty\n- Szolgáltatások: Férfi hajvágás, szakálligazítás, borotválás\n\nDESIGN:\n- Stílus: Maszkulin, klasszikus barber, prémium\n- Színek: Sötét antracit (#1E2A2E) fejlécekhez, réz/arany (#B07D3C) kiemelésekhez, krém (#EDE8E0) háttérhez, sötétszürke (#2A2A2A) szöveghez\n- Betűtípus: Erős, klasszikus (pl. Oswald címekhez, Roboto szöveghez)\n\nFELÉPÍTÉS (egyetlen görgethető oldal):\n1. Hero szekció: \"N Barber Dynasty — Kaposvár\", szlogen (\"Klasszikus borbélymunka, modern stílusban\"), CTA: \"Időpontfoglalás\"\n2. Szolgáltatások: Hajvágás, szakálligazítás, borotválás, kombinált csomagok — rövid leírás + ár\n3. Csapatunk: Gábor, Olivér, Andrei bemutatása, saját telefonszámmal\n4. Galéria: 6-8 kép placeholder\n5. Időpontfoglalás űrlap: Név, telefon, borbély kiválasztása (Gábor/Olivér/Andrei), szolgáltatás, kívánt időpont (a 3 külön telefonszám kiváltására)\n6. Elérhetőség: Telefonok, cím, nyitvatartás, Google Maps\n7. Lábléc: Facebook, telefon, cím, © 2026\n\nHANGNEM: Magabiztos, menő, közvetlen. Tegező.\n\nTECHNIKAI: Mobilbarát, reszponzív. Az egységes foglalási rendszer kulcsfontosságú (3 borbély egy helyen)."
+}

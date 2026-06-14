@@ -69,6 +69,9 @@ export interface Config {
   collections: {
     users: User;
     media: Media;
+    services: Service;
+    gallery: Gallery;
+    submissions: Submission;
     'payload-kv': PayloadKv;
     'payload-locked-documents': PayloadLockedDocument;
     'payload-preferences': PayloadPreference;
@@ -78,6 +81,9 @@ export interface Config {
   collectionsSelect: {
     users: UsersSelect<false> | UsersSelect<true>;
     media: MediaSelect<false> | MediaSelect<true>;
+    services: ServicesSelect<false> | ServicesSelect<true>;
+    gallery: GallerySelect<false> | GallerySelect<true>;
+    submissions: SubmissionsSelect<false> | SubmissionsSelect<true>;
     'payload-kv': PayloadKvSelect<false> | PayloadKvSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
     'payload-preferences': PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
@@ -87,8 +93,12 @@ export interface Config {
     defaultIDType: string;
   };
   fallbackLocale: null;
-  globals: {};
-  globalsSelect: {};
+  globals: {
+    settings: Setting;
+  };
+  globalsSelect: {
+    settings: SettingsSelect<false> | SettingsSelect<true>;
+  };
   locale: null;
   widgets: {
     collections: CollectionsWidget;
@@ -163,6 +173,52 @@ export interface Media {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "services".
+ */
+export interface Service {
+  id: string;
+  name: string;
+  description?: string | null;
+  price: string;
+  duration?: string | null;
+  icon?: string | null;
+  order?: number | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "gallery".
+ */
+export interface Gallery {
+  id: string;
+  image: string | Media;
+  alt: string;
+  order?: number | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * Időpontfoglalási űrlap beküldések
+ *
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "submissions".
+ */
+export interface Submission {
+  id: string;
+  name: string;
+  phone: string;
+  email?: string | null;
+  barber?: ('gabor' | 'oliver' | 'andrei' | 'any') | null;
+  service?: string | null;
+  date?: string | null;
+  time?: string | null;
+  message?: string | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "payload-kv".
  */
 export interface PayloadKv {
@@ -192,6 +248,18 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'media';
         value: string | Media;
+      } | null)
+    | ({
+        relationTo: 'services';
+        value: string | Service;
+      } | null)
+    | ({
+        relationTo: 'gallery';
+        value: string | Gallery;
+      } | null)
+    | ({
+        relationTo: 'submissions';
+        value: string | Submission;
       } | null);
   globalSlug?: string | null;
   user: {
@@ -277,6 +345,47 @@ export interface MediaSelect<T extends boolean = true> {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "services_select".
+ */
+export interface ServicesSelect<T extends boolean = true> {
+  name?: T;
+  description?: T;
+  price?: T;
+  duration?: T;
+  icon?: T;
+  order?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "gallery_select".
+ */
+export interface GallerySelect<T extends boolean = true> {
+  image?: T;
+  alt?: T;
+  order?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "submissions_select".
+ */
+export interface SubmissionsSelect<T extends boolean = true> {
+  name?: T;
+  phone?: T;
+  email?: T;
+  barber?: T;
+  service?: T;
+  date?: T;
+  time?: T;
+  message?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "payload-kv_select".
  */
 export interface PayloadKvSelect<T extends boolean = true> {
@@ -314,6 +423,64 @@ export interface PayloadMigrationsSelect<T extends boolean = true> {
   batch?: T;
   updatedAt?: T;
   createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "settings".
+ */
+export interface Setting {
+  id: string;
+  companyName?: string | null;
+  phones?:
+    | {
+        name: string;
+        phone: string;
+        id?: string | null;
+      }[]
+    | null;
+  address?: string | null;
+  email?: string | null;
+  openingHours?:
+    | {
+        days: string;
+        hours: string;
+        id?: string | null;
+      }[]
+    | null;
+  facebook?: string | null;
+  instagram?: string | null;
+  mapEmbedUrl?: string | null;
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "settings_select".
+ */
+export interface SettingsSelect<T extends boolean = true> {
+  companyName?: T;
+  phones?:
+    | T
+    | {
+        name?: T;
+        phone?: T;
+        id?: T;
+      };
+  address?: T;
+  email?: T;
+  openingHours?:
+    | T
+    | {
+        days?: T;
+        hours?: T;
+        id?: T;
+      };
+  facebook?: T;
+  instagram?: T;
+  mapEmbedUrl?: T;
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
