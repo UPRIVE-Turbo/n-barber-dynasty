@@ -14,7 +14,8 @@ export function Header() {
   const [open, setOpen] = useState(false)
 
   return (
-    <header className="fixed top-0 z-50 w-full border-b border-white/5 bg-anthracite/90 px-6 py-4 backdrop-blur-md md:px-12">
+    <>
+      <header className="fixed top-0 z-50 w-full border-b border-white/5 bg-anthracite/90 px-6 py-4 backdrop-blur-md md:px-12">
       <div className="mx-auto flex max-w-[1400px] items-center justify-between">
         <a href="#" className="group flex flex-col text-white outline-none">
           <span className="font-heading text-2xl leading-none tracking-wider md:text-3xl group-hover:text-copper transition-colors">
@@ -48,9 +49,10 @@ export function Header() {
           <List />
         </button>
       </div>
+      </header>
 
       <div
-        className={`fixed inset-0 z-40 flex flex-col items-center justify-center bg-anthracite transition-transform duration-500 ${
+        className={`fixed inset-0 z-[60] flex flex-col items-center justify-center bg-anthracite transition-transform duration-500 ${
           open ? 'translate-x-0' : 'translate-x-full'
         }`}
       >
@@ -81,6 +83,6 @@ export function Header() {
           </a>
         </nav>
       </div>
-    </header>
+    </>
   )
 }
